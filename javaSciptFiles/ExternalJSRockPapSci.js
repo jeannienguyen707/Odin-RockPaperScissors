@@ -1,6 +1,5 @@
 
-
-playGame();
+getHumanChoice()
 
 // Could use mod 3
 function getComputerChoice(){
@@ -14,26 +13,34 @@ function getComputerChoice(){
     }
 }
 function getHumanChoice(){
-    let ans = window.prompt("What is your choice?");
-    return ans;
+    //let ans = window.prompt("What is your choice?");
+    const ans = document.querySelectorAll("button")
+    console.log(ans)
+    ans.forEach(element => {
+        element.addEventListener("click",buttonType)
+    
+    });
+
+
+    
 }
 
 // Print statements only occur after the playGame function completes. Strange
 function playRound(humanChoice, computerChoice){
-    if (humanChoice.toLowerCase() === computerChoice) {
-        console.log("It's a tie");
-        return null;
-    } else if (humanChoice === "rock" && computerChoice === "paper") {
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    } else if (humanChoice === "scissors" && computerChoice === "rock"){
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    } else {
-        console.log ("You win! " + humanChoice + " beats " + computerChoice);
-        return true;
-    }
-    return false;
+    // if (humanChoice.toLowerCase() === computerChoice) {
+    //     console.log("It's a tie");
+    //     return null;
+    // } else if (humanChoice === "rock" && computerChoice === "paper") {
+    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    // } else if (humanChoice === "paper" && computerChoice === "scissors") {
+    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    // } else if (humanChoice === "scissors" && computerChoice === "rock"){
+    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    // } else {
+    //     console.log ("You win! " + humanChoice + " beats " + computerChoice);
+    //     return true;
+    // }
+    // return false;
 }
 
 function playGame() {
@@ -62,4 +69,10 @@ function playGame() {
     } else {
         console.log("Ends in a tie");
     }
+}
+
+function buttonType(e){
+    console.log(e.target.id)
+    
+    return e.target.id
 }
