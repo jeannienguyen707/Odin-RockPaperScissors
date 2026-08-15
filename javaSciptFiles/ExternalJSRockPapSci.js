@@ -1,5 +1,17 @@
 
-getHumanChoice()
+    let gameScore = 0;
+
+    const ans = document.querySelectorAll("button")
+    console.log(ans)
+    ans.forEach(element => {
+        element.addEventListener("click",playRound)
+    
+    });
+    const body = document.querySelector("body")
+    var div = document.createElement("div")
+    div.textContent = 'Score: ' + gameScore
+    body.append(div)
+
 
 // Could use mod 3
 function getComputerChoice(){
@@ -11,36 +23,25 @@ function getComputerChoice(){
     } else {
         return "scissors";
     }
-}
-function getHumanChoice(){
-    //let ans = window.prompt("What is your choice?");
-    const ans = document.querySelectorAll("button")
-    console.log(ans)
-    ans.forEach(element => {
-        element.addEventListener("click",buttonType)
-    
-    });
+} 
 
-
-    
-}
 
 // Print statements only occur after the playGame function completes. Strange
-function playRound(humanChoice, computerChoice){
-    // if (humanChoice.toLowerCase() === computerChoice) {
-    //     console.log("It's a tie");
-    //     return null;
-    // } else if (humanChoice === "rock" && computerChoice === "paper") {
-    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    // } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    // } else if (humanChoice === "scissors" && computerChoice === "rock"){
-    //     console.log ("You lose! " + computerChoice + " beats " + humanChoice);
-    // } else {
-    //     console.log ("You win! " + humanChoice + " beats " + computerChoice);
-    //     return true;
-    // }
-    // return false;
+function playRound(e){
+    let humanChoice = e.target.id
+    let computerChoice = getComputerChoice();
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie");
+
+    } else if (humanChoice === "rock" && computerChoice === "paper") {
+        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    } else if (humanChoice === "paper" && computerChoice === "scissors") {
+        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    } else if (humanChoice === "scissors" && computerChoice === "rock"){
+        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+    } else {
+        console.log ("You win! " + humanChoice + " beats " + computerChoice);
+    }
 }
 
 function playGame() {
@@ -69,10 +70,4 @@ function playGame() {
     } else {
         console.log("Ends in a tie");
     }
-}
-
-function buttonType(e){
-    console.log(e.target.id)
-    
-    return e.target.id
 }
