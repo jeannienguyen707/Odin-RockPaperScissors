@@ -1,6 +1,7 @@
 
-    let gameScore = 0;
-
+    let round = 0;
+    let computerScore = 0;
+    let playerScore = 0;
     const ans = document.querySelectorAll("button")
     console.log(ans)
     ans.forEach(element => {
@@ -8,9 +9,16 @@
     
     });
     const body = document.querySelector("body")
-    var div = document.createElement("div")
-    div.textContent = 'Score: ' + gameScore
-    body.append(div)
+    var rDiv = document.createElement("div")
+    var comDiv = document.createElement("div")
+    var playDiv = document.createElement("div")
+    const victorDiv = document.createElement("div")
+    rDiv.textContent = 'Round: ' + round
+    comDiv.textContent = 'Score: ' + computerScore
+    playDiv.textContent = 'Score ' + playerScore
+    body.append(rDiv)
+    body.append(comDiv)
+    body.append(playDiv)
 
 
 // Could use mod 3
@@ -28,46 +36,42 @@ function getComputerChoice(){
 
 // Print statements only occur after the playGame function completes. Strange
 function playRound(e){
+    victorDiv.textContent = ""
     let humanChoice = e.target.id
     let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
         console.log("It's a tie");
-
     } else if (humanChoice === "rock" && computerChoice === "paper") {
         console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        computerScore++
     } else if (humanChoice === "paper" && computerChoice === "scissors") {
         console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        computerScore++
     } else if (humanChoice === "scissors" && computerChoice === "rock"){
         console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        computerScore++
     } else {
         console.log ("You win! " + humanChoice + " beats " + computerChoice);
+        playerScore++
     }
-}
+    round++
+    rDiv.textContent = 'Round: ' + round
+    comDiv.textContent = 'Computer Score: ' + computerScore
+    playDiv.textContent = 'Human Score ' + playerScore
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    let humanChoice = null;
-    let computerChoice = null;
+    if (computerScore == 5 || playerScore == 5) {
 
-    for (let i = 0; i < 5; i++) {
-        computerChoice = getComputerChoice();
-        humanChoice = getHumanChoice();
-        let winner = playRound(humanChoice, computerChoice);
-        if (winner != null) {
-            if (winner === false) {
-                computerScore++;
-            } else {
-                humanScore++;
-            }
+        if (computerScore == 5){
+            victorDiv.textContent = "Computer has Won! GAME OVER"
+        } else {
+            victorDiv.textContent = "Player has Won! GAME OVER"
         }
+        body.append(victorDiv)
+        round = 0;
+        playerScore = 0;
+        computerScore = 0;
     }
 
-    if (humanScore < computerScore) {
-        console.log("The winner is the computer!");
-    } else if (humanScore > computerScore){
-        console.log("The winner is you!");
-    } else {
-        console.log("Ends in a tie");
-    }
+    
 }
+
