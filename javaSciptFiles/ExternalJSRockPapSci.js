@@ -13,12 +13,14 @@
     var comDiv = document.createElement("div")
     var playDiv = document.createElement("div")
     const victorDiv = document.createElement("div")
+    let battleResults = document.createElement("div")
     rDiv.textContent = 'Round: ' + round
     comDiv.textContent = 'Score: ' + computerScore
     playDiv.textContent = 'Score ' + playerScore
     body.append(rDiv)
     body.append(comDiv)
     body.append(playDiv)
+    body.append(battleResults)
 
 
 // Could use mod 3
@@ -40,18 +42,18 @@ function playRound(e){
     let humanChoice = e.target.id
     let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
-        console.log("It's a tie");
+        battleResults.textContent = "It's a tie";
     } else if (humanChoice === "rock" && computerChoice === "paper") {
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        battleResults.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
         computerScore++
     } else if (humanChoice === "paper" && computerChoice === "scissors") {
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        battleResults.textContent="You lose! " + computerChoice + " beats " + humanChoice;
         computerScore++
     } else if (humanChoice === "scissors" && computerChoice === "rock"){
-        console.log ("You lose! " + computerChoice + " beats " + humanChoice);
+        battleResults.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
         computerScore++
     } else {
-        console.log ("You win! " + humanChoice + " beats " + computerChoice);
+        battleResults.textContent = "You win! " + humanChoice + " beats " + computerChoice;
         playerScore++
     }
     round++
@@ -70,6 +72,7 @@ function playRound(e){
         round = 0;
         playerScore = 0;
         computerScore = 0;
+        battleResults.textContent =""
     }
 
     
